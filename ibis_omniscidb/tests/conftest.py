@@ -63,7 +63,7 @@ def test_table(con):
 def session_con():
     """Define a session connection fixture."""
     # TODO: fix return issue
-    return ibis.omniscidb.connect(
+    return ibis_omniscidb.connect(
         protocol=OMNISCIDB_PROTOCOL,
         host=OMNISCIDB_HOST,
         port=OMNISCIDB_PORT,
