@@ -7,8 +7,8 @@ import ibis.common.exceptions as com
 import ibis.expr.operations as ops
 import ibis.expr.types as ir
 import ibis.util as util
+from ibis.backends.base.sql import compiler
 from ibis.backends.base_sql.compiler import BaseExprTranslator
-from ibis.backends.base_sqlalchemy import compiler
 from ibis.expr.api import _add_methods, _binop_expr, _unary_op
 
 from . import operations as omniscidb_ops
@@ -19,7 +19,7 @@ from .operations import _type_to_sql_string  # noqa: F401
 def build_ast(
     expr: ibis.Expr,
     context: compiler.QueryContext,
-) -> compiler.QueryAST:
+):
     """Build AST from given expression.
 
     Parameters
@@ -294,7 +294,6 @@ class OmniSciDBDialect(compiler.Dialect):
 
 
 dialect = OmniSciDBDialect
-compiles = OmniSciDBExprTranslator.compiles
 rewrites = OmniSciDBExprTranslator.rewrites
 
 omniscidb_reg = omniscidb_ops._operation_registry
